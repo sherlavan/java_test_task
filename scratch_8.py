@@ -12,11 +12,17 @@ for img_name in files:
         bnw = crop.convert('L')
         imgData = np.asarray(bnw)
         thresholdedData = (imgData > 200) * 1.0
+        price = thresholdedData[5:29, 3:33]
+        suit = thresholdedData[49:81, 25:57]
         total = sum(sum(thresholdedData))
         print(total)
         if total < 555:
             continue
-        plt.imshow(thresholdedData)
+        # plt.imshow(thresholdedData)
+        # plt.show()
+        plt.imshow(price)
+        plt.show()
+        plt.imshow(suit)
         plt.show()
     break
     # bnw.show()
