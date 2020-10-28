@@ -1,6 +1,5 @@
-from PIL import ImageFont, ImageDraw, Image
+from PIL import Image
 from os import curdir, listdir
-from matplotlib import pyplot as plt
 import numpy as np
 p = ['A', 'K', 'Q', 'J', '2', '3', '4', '5', '6',  '7', '8',  '9', '10']
 s = ['s', 'c', 'd', 'h']
@@ -29,7 +28,7 @@ img_dir = curdir + '/imgs/'
 files = listdir(img_dir)
 for img_name in files:
     img = Image.open(img_dir + img_name)
-    print(img_name)
+    print(img_name, end='\t')
     for i in range(5):
         crop = img.crop((143 + i * 72, 586, 206 + i * 72, 673))
         bnw = crop.convert('L')
@@ -52,7 +51,7 @@ for img_name in files:
             suitChance.append(np.corrcoef(cardPriceNSuit[j].ravel(), suit.ravel())[0][1])
         chances = max(suitChance)
         guess = s[suitChance.index(chances)]
-        print(guesp, guess, sep='', end='')
+        print(guesp, guess, sep='', end=' ')
 
     print()
 
