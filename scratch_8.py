@@ -2,6 +2,14 @@ from PIL import Image
 from os import curdir, listdir
 import numpy as np
 
+class nero(object):
+    def __init__(self, layers):
+        self.nlayers = len(layers)
+        self.sizes = layers
+        self.biases = [np.random.randn(y, 1) for y in self.sizes[1:]]
+        self.weights = [np.random.randn(y, x) for x, y in zip(self.sizes[:-1], self.sizes[1:])]
+
+
 correctData = np.genfromtxt('cards.csv', delimiter=';', dtype='str')
 cd = {k: l for k, l in correctData}
 p = ['A', 'K', 'Q', 'J', '2', '3', '4', '5', '6',  '7', '8',  '9', '10']
