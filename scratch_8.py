@@ -19,10 +19,10 @@ class Nero(object):
         self.weights = [np.random.randn(layerSize, nextLayerSize)
                         for layerSize, nextLayerSize in zip(self.sizes[:-1], self.sizes[1:])]
 
-    def feed(self, a):
-        for b, w in zip(self.biases, self.weights):
-            a = sigma(np.dot(w, a) + a)
-        return a
+    def feed(self, X): #X - input
+        for bias, weigt in zip(self.biases, self.weights):
+            X = sigma(np.dot(X, weigt) + bias)
+        return X
 
 
 correctData = np.genfromtxt('cards.csv', delimiter=';', dtype='str')
