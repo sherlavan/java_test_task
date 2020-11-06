@@ -20,8 +20,8 @@ class Nero(object):
                         for layerSize, nextLayerSize in zip(self.sizes[:-1], self.sizes[1:])]
 
     def feed(self, X): #X - input
-        for bias, weigt in zip(self.biases, self.weights):
-            X = sigma(np.dot(X, weigt) + bias)
+        for bias, weight in zip(self.biases, self.weights):
+            X = sigma(np.dot(X, weight) + bias)
         return X
 
 
