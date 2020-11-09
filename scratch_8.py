@@ -33,6 +33,7 @@ class Nero(object):
     def back(self, X, correctMatrix, predictMatrix):
         delta = (correctMatrix - predictMatrix) * dsigma(predictMatrix)
         # TODO weight and bias correction
+        # w' = w + d * (layer_result)' * layer_input * coef_learn
         return
 
 correctData = np.genfromtxt('cards.csv', delimiter=';', dtype='str')
