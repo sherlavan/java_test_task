@@ -18,12 +18,22 @@ class Nero(object):
         self.biases = [np.random.randn(layerSize, 1) for layerSize in self.sizes[1:]]
         self.weights = [np.random.randn(layerSize, nextLayerSize)
                         for layerSize, nextLayerSize in zip(self.sizes[:-1], self.sizes[1:])]
+        self.network = [np.zeros(layerSize) for layerSize in self.sizes]
 
     def feed(self, X): #X - input
+        self.network[0] = X
+        mi = iter(self.network)
+
         for bias, weight in zip(self.biases, self.weights):
+            next(mi)
             X = sigma(np.dot(X, weight) + bias)
+            mi = X
         return X
 
+    def back(self, X, correctMatrix, predictMatrix):
+        delta = (correctMatrix - predictMatrix) * dsigma(predictMatrix)
+        # TODO weight and bias correction
+        return
 
 correctData = np.genfromtxt('cards.csv', delimiter=';', dtype='str')
 cd = {k: l for k, l in correctData}
